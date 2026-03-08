@@ -34,7 +34,7 @@ box-shadow:0 0 20px rgba(0,0,0,0.15);
 
 .falling{
 position:absolute;
-font-size:20px;
+font-size:22px;
 color:#333;
 animation:fall linear forwards;
 }
@@ -48,13 +48,6 @@ animation:fall linear forwards;
 position:absolute;
 width:90px;
 pointer-events:none;
-animation:float 8s linear infinite;
-}
-
-@keyframes float{
-0%{transform:translateY(0)}
-50%{transform:translateY(-20px)}
-100%{transform:translateY(0)}
 }
 
 .cat{
@@ -77,6 +70,7 @@ width:100%;
 font-size:38px;
 font-family:'Pacifico',cursive;
 opacity:0;
+transition:1s;
 }
 
 </style>
@@ -86,83 +80,86 @@ opacity:0;
 
 <button id="startBtn">Click me 🌻</button>
 
-<div id="final">Happy Women’s Day to my most amazing girl.</div>
+<div id="final">Happy Women’s Day to the most amazing girl.</div>
 
-<iframe id="music" width="0" height="0"
-src="https://www.youtube.com/embed/UZ2PBMPC62s?enablejsapi=1"
-frameborder="0"></iframe>
+<iframe width="0" height="0"
+src="https://www.youtube.com/embed/UZ2PBMPC62s?autoplay=1&mute=1"
+allow="autoplay"></iframe>
 
 <script>
 
 const compliments = [
-/* you matter my cutu, being woman is always gonna be a flex remember that my love*/
+"you matter my love🌻",
+"you make the world a better place js by existing",
+"you deserve all the best things",
+"you are a bitch sometimes but a cute one",
+"you’re stronger than you think",
+"you make my days better",
+"you support palestine (bare min ik)",
+"you are anti class too (i hope)"
+"fuck periods"
 ];
 
 function start(){
 
-document.getElementById("startBtn").style.display="none"
+document.getElementById("startBtn").style.display="none";
 
-let player=document.getElementById("music")
-player.src+="&autoplay=1"
-
-setInterval(spawnText,800)
-setInterval(spawnSunflower,3000)
-setInterval(spawnCat,7000)
+setInterval(spawnText,700);
+setInterval(spawnSunflower,2500);
+setInterval(spawnCat,7000);
 
 setTimeout(()=>{
-document.getElementById("final").style.opacity="1"
-},20000)
+document.getElementById("final").style.opacity="1";
+},20000);
 
 }
 
 function spawnText(){
 
-if(compliments.length===0)return
+let text=document.createElement("div");
+text.className="falling";
+text.innerText=compliments[Math.floor(Math.random()*compliments.length)];
 
-let text=document.createElement("div")
-text.className="falling"
-text.innerText=compliments[Math.floor(Math.random()*compliments.length)]
+text.style.left=Math.random()*100+"vw";
+text.style.animationDuration=4+Math.random()*3+"s";
 
-text.style.left=Math.random()*100+"vw"
-text.style.animationDuration=4+Math.random()*3+"s"
+document.body.appendChild(text);
 
-document.body.appendChild(text)
-
-setTimeout(()=>text.remove(),7000)
+setTimeout(()=>text.remove(),7000);
 
 }
 
 function spawnSunflower(){
 
-let img=document.createElement("img")
-img.className="sunflower"
-img.src="https://media.tenor.com/0R6C0q7b1jUAAAAi/sunflower.gif"
+let img=document.createElement("img");
+img.className="sunflower";
+img.src="https://media.tenor.com/0R6C0q7b1jUAAAAi/sunflower.gif";
 
-img.style.left=Math.random()*100+"vw"
-img.style.top=Math.random()*80+"vh"
+img.style.left=Math.random()*100+"vw";
+img.style.top=Math.random()*80+"vh";
 
-document.body.appendChild(img)
+document.body.appendChild(img);
 
-setTimeout(()=>img.remove(),9000)
+setTimeout(()=>img.remove(),9000);
 
 }
 
 function spawnCat(){
 
-let cat=document.createElement("img")
-cat.className="cat"
-cat.src="https://media.tenor.com/Wb1sOe9vJH8AAAAC/cute-cat.gif"
+let cat=document.createElement("img");
+cat.className="cat";
+cat.src="https://media.tenor.com/Wb1sOe9vJH8AAAAC/cute-cat.gif";
 
-cat.style.left=Math.random()*80+"vw"
-cat.style.top=Math.random()*80+"vh"
+cat.style.left=Math.random()*80+"vw";
+cat.style.top=Math.random()*80+"vh";
 
-document.body.appendChild(cat)
+document.body.appendChild(cat);
 
-setTimeout(()=>cat.remove(),6000)
+setTimeout(()=>cat.remove(),6000);
 
 }
 
-document.getElementById("startBtn").onclick=start
+document.getElementById("startBtn").onclick=start;
 
 </script>
 
