@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌻</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+overflow:hidden;
+background:linear-gradient(#fff8c6,#ffe066);
+font-family:'Quicksand',sans-serif;
+text-align:center;
+}
+
+#startBtn{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+padding:18px 35px;
+font-size:22px;
+border:none;
+border-radius:40px;
+background:#ffd43b;
+cursor:pointer;
+font-family:'Pacifico',cursive;
+box-shadow:0 0 20px rgba(0,0,0,0.15);
+}
+
+.falling{
+position:absolute;
+font-size:20px;
+color:#333;
+animation:fall linear forwards;
+}
+
+@keyframes fall{
+0%{transform:translateY(-50px);opacity:1}
+100%{transform:translateY(110vh);opacity:0}
+}
+
+.sunflower{
+position:absolute;
+width:90px;
+pointer-events:none;
+animation:float 8s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0)}
+50%{transform:translateY(-20px)}
+100%{transform:translateY(0)}
+}
+
+.cat{
+position:absolute;
+width:120px;
+animation:pop 6s linear forwards;
+}
+
+@keyframes pop{
+0%{opacity:0;transform:scale(.5)}
+20%{opacity:1}
+80%{opacity:1}
+100%{opacity:0}
+}
+
+#final{
+position:absolute;
+top:40%;
+width:100%;
+font-size:38px;
+font-family:'Pacifico',cursive;
+opacity:0;
+}
+
+</style>
+</head>
+
+<body>
+
+<button id="startBtn">Click me 🌻</button>
+
+<div id="final">Happy Women’s Day to my most amazing girl.</div>
+
+<iframe id="music" width="0" height="0"
+src="https://www.youtube.com/embed/UZ2PBMPC62s?enablejsapi=1"
+frameborder="0"></iframe>
+
+<script>
+
+const compliments = [
+/* you matter my cutu, being woman is always gonna be a flex remember that my love*/
+];
+
+function start(){
+
+document.getElementById("startBtn").style.display="none"
+
+let player=document.getElementById("music")
+player.src+="&autoplay=1"
+
+setInterval(spawnText,800)
+setInterval(spawnSunflower,3000)
+setInterval(spawnCat,7000)
+
+setTimeout(()=>{
+document.getElementById("final").style.opacity="1"
+},20000)
+
+}
+
+function spawnText(){
+
+if(compliments.length===0)return
+
+let text=document.createElement("div")
+text.className="falling"
+text.innerText=compliments[Math.floor(Math.random()*compliments.length)]
+
+text.style.left=Math.random()*100+"vw"
+text.style.animationDuration=4+Math.random()*3+"s"
+
+document.body.appendChild(text)
+
+setTimeout(()=>text.remove(),7000)
+
+}
+
+function spawnSunflower(){
+
+let img=document.createElement("img")
+img.className="sunflower"
+img.src="https://media.tenor.com/0R6C0q7b1jUAAAAi/sunflower.gif"
+
+img.style.left=Math.random()*100+"vw"
+img.style.top=Math.random()*80+"vh"
+
+document.body.appendChild(img)
+
+setTimeout(()=>img.remove(),9000)
+
+}
+
+function spawnCat(){
+
+let cat=document.createElement("img")
+cat.className="cat"
+cat.src="https://media.tenor.com/Wb1sOe9vJH8AAAAC/cute-cat.gif"
+
+cat.style.left=Math.random()*80+"vw"
+cat.style.top=Math.random()*80+"vh"
+
+document.body.appendChild(cat)
+
+setTimeout(()=>cat.remove(),6000)
+
+}
+
+document.getElementById("startBtn").onclick=start
+
+</script>
+
+</body>
+</html>
